@@ -1,0 +1,24 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.11.0",
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "scss": "node-sass --watch ./Styles/Compiled -o ./Styles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devitar/ToDoApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Devitar/ToDoApp/issues"
+  },
+  "homepage": "https://github.com/Devitar/ToDoApp#readme"
+}
