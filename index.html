@@ -6,14 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>To Do List</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
-
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -32,25 +29,40 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>ToDo List App</h3>
+                <h3>To Do List App</h3>
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Your
-                        Lists</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="#list1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">List 1</a>
+                    <ul class="collapse list-unstyled" id="list1">
                         <li>
-                            <a href="#">List 1</a>
+                            <a href="#">Task 1</a>
                         </li>
                         <li>
-                            <a href="#">List 2</a>
+                            <a href="#">Task 2</a>
                         </li>
                         <li>
-                            <a href="#">List 3</a>
+                            <a href="#">Task 3</a>
                         </li>
                     </ul>
                 </li>
             </ul>
+            <!-- <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#list2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">List 2</a>
+                    <ul class="collapse list-unstyled" id="list2">
+                        <li>
+                            <a href="#">Task 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Task 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Task 3</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul> -->
         </nav>
 
         <!-- Page Content  -->
@@ -66,7 +78,7 @@
         </div>
     </div>
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <!-- jQuery slim -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -75,8 +87,6 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 </body>
 
