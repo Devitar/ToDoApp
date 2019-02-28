@@ -29,6 +29,9 @@ class List {
         this.Content = [];
         currentTasks[this.Name] = this;
     };
+    Load() {
+        //Add content to HTML
+    }
 };
 
 let savedTasks = localStorage.getItem("SavedTasks");
@@ -43,6 +46,10 @@ if (savedTasks != null){
 }else{
     //First time run, prompt user to create a new list
 };
+
+function ClearPage(){
+    //Clear current displayed tasks (if any)
+}
 
 function SaveData(){
     localStorage.setItem("SavedTasks", JSON.stringify(currentTasks));
