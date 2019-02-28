@@ -1,10 +1,11 @@
 @import "https://fonts.googleapis.com/css?family=Merriweather|Roboto";
 // https://coolors.co/ededed-2a2d34-584d3d-92afd7-6e8894  Color palette
+// New palette https://coolors.co/353535-3c6e71-ededed-b4d2e7-274156
 
-
-$paletteSilver: #EDEDED;
+$paletteBackground: #EDEDED;
 $paletteBlack: #2A2D34;
 $paletteBrown: #584D3D;
+$paletteLightBrown: #786a54;
 $paletteBlue: #92AFD7;
 $paletteGrey: #B8B8AA;
 $paletteShadow: rgba(0, 0, 0, 0.5);
@@ -18,7 +19,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: $paletteSilver;
+    background: $paletteBackground;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -41,7 +42,7 @@ a:focus {
 .line {
     width: 100%;
     height: 1px;
-    border-bottom: 1px dashed $paletteSilver;
+    border-bottom: 1px dashed $paletteBackground;
     margin: 40px 0;
     background: $paletteBlack;
 }
@@ -75,7 +76,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: $paletteGrey;
+    background: $paletteLightBrown;
 }
 
 #sidebar ul.components {
@@ -89,8 +90,8 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    color: $paletteBlack;
-    background: $paletteGrey;
+    // color: $paletteBlack;
+    background: $paletteLightBrown;
 }
 
 a[data-toggle="collapse"] {
@@ -123,11 +124,11 @@ a[data-toggle="collapse"] {
 
 .mainButton {
     background-color: $paletteBrown;
-    border-color: $paletteGrey;
+    border-color: $paletteLightBrown;
 }
 
 .mainButton:hover {
-    background-color: $paletteGrey;
+    background-color: $paletteLightBrown;
     border-color: $paletteBrown;
 }
 

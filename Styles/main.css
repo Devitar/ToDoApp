@@ -52,7 +52,7 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #B8B8AA; }
+  background: #786a54; }
 
 #sidebar ul.components {
   padding: 20px 0; }
@@ -63,8 +63,7 @@ a:focus {
   display: block; }
 
 #sidebar ul li a:hover {
-  color: #2A2D34;
-  background: #B8B8AA; }
+  background: #786a54; }
 
 a[data-toggle="collapse"] {
   position: relative; }
@@ -90,10 +89,10 @@ a[data-toggle="collapse"] {
 
 .mainButton {
   background-color: #584D3D;
-  border-color: #B8B8AA; }
+  border-color: #786a54; }
 
 .mainButton:hover {
-  background-color: #B8B8AA;
+  background-color: #786a54;
   border-color: #584D3D; }
 
 .topHeader {
