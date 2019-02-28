@@ -42,10 +42,13 @@ a:focus {
   z-index: 999;
   background: #584D3D;
   color: #fff;
-  transition: all 0.3s; }
+  transition: all 0.3s;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5); }
 
 #sidebar.active {
-  margin-left: -250px; }
+  margin-left: -260px; }
 
 #sidebar .sidebar-header {
   padding: 20px;
@@ -120,7 +123,7 @@ a[data-toggle="collapse"] {
 
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -250px; }
+    margin-left: -260px; }
   #sidebar.active {
     margin-left: 0; }
   #content {
