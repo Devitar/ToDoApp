@@ -10,6 +10,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-image: url(../Assets/Images/spiral-notebook-paper-texture75%.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
@@ -26,7 +27,8 @@ a:focus {
   height: 1px;
   border-bottom: 1px dashed #EDEDED;
   margin: 40px 0;
-  background: #2A2D34; }
+  background: #353535;
+  display: table; }
 
 .wrapper {
   display: flex;
@@ -40,7 +42,7 @@ a:focus {
   left: 0;
   height: 100vh;
   z-index: 999;
-  background: #584D3D;
+  background: #274156;
   color: #fff;
   transition: all 0.3s;
   -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.5);
@@ -52,7 +54,8 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #786a54; }
+  background: #B4D2E7;
+  color: #353535; }
 
 #sidebar ul.components {
   padding: 20px 0; }
@@ -63,7 +66,8 @@ a:focus {
   display: block; }
 
 #sidebar ul li a:hover {
-  background: #786a54; }
+  color: #353535;
+  background: #B4D2E7; }
 
 a[data-toggle="collapse"] {
   position: relative; }
@@ -88,24 +92,47 @@ a[data-toggle="collapse"] {
   align-items: center; }
 
 .mainButton {
-  background-color: #584D3D;
-  border-color: #786a54; }
+  background-color: #274156;
+  border-color: #B4D2E7; }
 
 .mainButton:hover {
-  background-color: #786a54;
-  border-color: #584D3D; }
+  background-color: #B4D2E7;
+  border-color: #274156;
+  color: #353535; }
 
 .topHeader {
   font-size: 2em;
-  color: #2A2D34;
+  color: #353535;
   margin-right: 15%;
-  font-family: 'Merriweather', serif; }
+  font-family: 'Merriweather', serif;
+  text-align: center; }
 
 #body {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   flex: 1; }
+
+.taskItem {
+  background-color: #274156;
+  color: #FFFFFF;
+  width: 90%;
+  max-width: 90%;
+  height: 15%;
+  max-height: 15%;
+  margin-top: 15px;
+  margin-left: 8%;
+  word-wrap: break-word; }
+  .taskItem .taskHeader {
+    background-color: #B4D2E7;
+    color: #353535;
+    height: 33%;
+    width: 100%;
+    text-align: center; }
+  .taskItem .taskBody {
+    height: 66%;
+    width: 100%; }
 
 .mainFooter {
   position: absolute;
@@ -114,8 +141,7 @@ a[data-toggle="collapse"] {
   width: 100%;
   height: 90px;
   font-family: 'Merriweather', serif;
-  background-color: #B8B8AA;
-  color: #2A2D34;
+  color: #353535;
   text-align: center;
   vertical-align: middle;
   line-height: 90px; }
@@ -131,3 +157,7 @@ a[data-toggle="collapse"] {
     display: none; }
   .topHeader {
     margin-right: 4%; } }
+
+@media (min-width: 1400px) {
+  .topHeader {
+    margin-right: 40%; } }

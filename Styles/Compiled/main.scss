@@ -3,11 +3,10 @@
 // New palette https://coolors.co/353535-3c6e71-ededed-b4d2e7-274156
 
 $paletteBackground: #EDEDED;
-$paletteBlack: #2A2D34;
-$paletteBrown: #584D3D;
-$paletteLightBrown: #786a54;
-$paletteBlue: #92AFD7;
-$paletteGrey: #B8B8AA;
+$paletteBlack: #353535;
+$paletteGreen: #3C6E71;
+$paletteLightBlue: #B4D2E7;
+$paletteBlue: #274156;
 $paletteShadow: rgba(0, 0, 0, 0.5);
 
 html {
@@ -24,7 +23,8 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    // background-image: url(../../Assets/Images/burger-hero.jpg);
+    background-image: url(../Assets/Images/spiral-notebook-paper-texture75%.png);
+    //opacity: .5;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -38,13 +38,13 @@ a:focus {
     transition: all 0.3s;
 }
 
-
 .line {
     width: 100%;
     height: 1px;
     border-bottom: 1px dashed $paletteBackground;
     margin: 40px 0;
     background: $paletteBlack;
+    display: table;
 }
 
 .wrapper {
@@ -62,7 +62,7 @@ a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: $paletteBrown;
+    background: $paletteBlue;
     color: #fff;
     transition: all 0.3s;
     -webkit-box-shadow: 0px 0px 5px 3px $paletteShadow;
@@ -76,7 +76,8 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: $paletteLightBrown;
+    background: $paletteLightBlue;
+    color: $paletteBlack;
 }
 
 #sidebar ul.components {
@@ -90,8 +91,8 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-    // color: $paletteBlack;
-    background: $paletteLightBrown;
+    color: $paletteBlack;
+    background: $paletteLightBlue;
 }
 
 a[data-toggle="collapse"] {
@@ -123,13 +124,14 @@ a[data-toggle="collapse"] {
 }
 
 .mainButton {
-    background-color: $paletteBrown;
-    border-color: $paletteLightBrown;
+    background-color: $paletteBlue;
+    border-color: $paletteLightBlue;
 }
 
 .mainButton:hover {
-    background-color: $paletteLightBrown;
-    border-color: $paletteBrown;
+    background-color: $paletteLightBlue;
+    border-color: $paletteBlue;
+    color: $paletteBlack;
 }
 
 .topHeader {
@@ -137,13 +139,39 @@ a[data-toggle="collapse"] {
     color: $paletteBlack;
     margin-right: 15%;
     font-family: 'Merriweather', serif;
+    text-align: center;
 }
 
 #body {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     flex: 1;
+}
+
+.taskItem {
+    background-color: $paletteBlue;
+    color: #FFFFFF;
+    width: 90%;
+    max-width: 90%;
+    height: 15%;
+    max-height: 15%;
+    margin-top: 15px;
+    margin-left: 8%;
+    word-wrap: break-word;
+    .taskHeader {
+        background-color: $paletteLightBlue;
+        color: $paletteBlack;
+        height: 33%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .taskBody {
+        height: 66%;
+        width: 100%;
+    }
 }
 
 .mainFooter {
@@ -153,7 +181,7 @@ a[data-toggle="collapse"] {
     width: 100%;
     height: 90px;
     font-family: 'Merriweather', serif;
-    background-color: $paletteGrey;
+    // background-color: $paletteGreen;
     color: $paletteBlack;
     text-align: center;
     vertical-align: middle;
@@ -184,5 +212,10 @@ a[data-toggle="collapse"] {
 
     .topHeader {
         margin-right: 4%;
+    }
+}
+@media (min-width: 1400px) {
+    .topHeader {
+        margin-right: 40%;
     }
 }

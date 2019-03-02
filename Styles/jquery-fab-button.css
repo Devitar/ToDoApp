@@ -50,7 +50,7 @@ nav ul a.btn, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul 
   height: 37px;
   line-height: 37px;
   padding: 0;
-  background-color: #353535;
+  background-color: #3C6E71;
   border-radius: 50%;
   transition: .3s;
   cursor: pointer;
@@ -65,7 +65,7 @@ nav ul a.btn, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul 
   line-height: 37px; }
 
 .btn-floating:hover {
-  background-color: #ab9d87; }
+  background-color: #B4D2E7; }
 
 .btn-floating:before {
   border-radius: 0; }
