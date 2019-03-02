@@ -1,15 +1,11 @@
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar, #content').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-    $('mainFooter').hide();
-});
+let mainModal = $('#mainModal');
+let modalCloseButton = $("#modalClose");
 
 let currentTasks = {};
 let allLists = [];
 let currentList = "";
+
+let savedTasks = localStorage.getItem("SavedTasks");
 
 class Task {
     constructor(description, status) {
@@ -31,30 +27,60 @@ class List {
         currentTasks[this.Name] = this;
     };
     Load() {
+        ClearPage();
+        let parsedArray = JSON.parse(stringedArray);
+        console.log(parsedArray);
+        let allKeys = Object.keys(parsedArray);
+        for (let i = 0; i < allKeys.length; i++) {
+            let currentArray = parsedArray[allKeys[i]];
+            console.log(currentArray);
+            for (let i2 = 0; i2 < currentArray.length; i2++) {
+                console.log(currentArray[i2]);
+            };
+        };
         //Add content to HTML
     }
 };
 
-let savedTasks = localStorage.getItem("SavedTasks");
-
-if (savedTasks != null){
-    currentTasks = JSON.parse(savedTasks);
-    allLists = Object.keys(currentTasks);
-    for (let i = 0; i < allLists.length; i++){
-        //Must loop through each, and parse it
-        //Add list to HTML with jQuery .append()
-    };
-}else{
-    //First time run, prompt user to create a new list
-};
-
-function ClearPage(){
-    //Clear current displayed tasks (if any)
+function ClearPage() {
+    $(".taskItem").remove();
 }
 
-function SaveData(){
+function SaveData() {
     localStorage.setItem("SavedTasks", JSON.stringify(currentTasks));
 };
+
+modalCloseButton.click(function () {
+    mainModal.css("display", "none");
+});
+window.onclick = function (event) {
+    console.log("fired");
+    let eventTarget = $(event.target);
+    console.log(eventTarget);
+    if (event.target == mainModal[0]) {
+        console.log("passed")
+        mainModal.css("display", "none");
+    }
+}
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    if (savedTasks != null) {
+        currentTasks = JSON.parse(savedTasks);
+        allLists = Object.keys(currentTasks);
+        for (let i = 0; i < allLists.length; i++) {
+            //Must loop through each, and parse it
+            //Add list to HTML with jQuery .append()
+        };
+    } else {
+        //Prompt to create new task
+        mainModal.css("display", "block");
+    };
+});
 
 
 /* remember

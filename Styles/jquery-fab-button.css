@@ -45,7 +45,7 @@ nav ul a.btn, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul 
   color: #fff;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: 20;
   width: 37px;
   height: 37px;
   line-height: 37px;
@@ -89,7 +89,7 @@ button.btn-floating {
   bottom: 23px;
   padding-top: 15px;
   margin-bottom: 0;
-  z-index: 998; }
+  z-index: 20; }
 
 .fixed-action-btn.active ul {
   visibility: visible; }
