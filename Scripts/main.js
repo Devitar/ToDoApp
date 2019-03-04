@@ -81,6 +81,7 @@ $(".importantImageClick").click(function (event) {
     };
 });
 //
+
 //Mark task as done
 $(".doneImageClick").click(function (event) {
     let imageContainer = $(event.target);
