@@ -249,6 +249,11 @@ a[data-toggle="collapse"] {
     text-align: center;
 }
 
+.container {
+    width: 100%;
+    height: 100%;
+}
+
 #body {
     width: 100%;
     height: 100%;
@@ -261,25 +266,33 @@ a[data-toggle="collapse"] {
     background-color: $paletteBlue;
     color: #FFFFFF;
     width: 90%;
-    max-width: 90%;
+    // max-width: 90%;
     height: 15%;
     max-height: 15%;
     margin-top: 15px;
     margin-left: 8%;
     word-wrap: break-word;
+    border-radius: 15px 15px 15px 15px;
+}
 
-    .taskHeader {
-        background-color: $paletteLightBlue;
-        color: $paletteBlack;
-        height: 33%;
-        width: 100%;
-        text-align: center;
-    }
+.taskImage {
+    width: 5%;
+    position: absolute;
+    left: -6%;
+}
 
-    .taskBody {
-        height: 66%;
-        width: 100%;
-    }
+.taskHeader {
+    background-color: $paletteLightBlue;
+    color: $paletteBlack;
+    height: 33%;
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 15px 15px;
+}
+
+.taskBody {
+    height: 66%;
+    width: 100%;
 }
 
 .mainFooter {

@@ -7,6 +7,9 @@ let currentList = "";
 
 let savedTasks = localStorage.getItem("SavedTasks");
 
+let starOff = "Assets/Images/starEmpty.png";
+let starOn = "Assets/Images/starFull.png";
+
 class Task {
     constructor(description, status) {
         this.Description = description;
@@ -54,14 +57,23 @@ modalCloseButton.click(function () {
     mainModal.css("display", "none");
 });
 window.onclick = function (event) {
-    console.log("fired");
     let eventTarget = $(event.target);
-    console.log(eventTarget);
     if (event.target == mainModal[0]) {
-        console.log("passed")
         mainModal.css("display", "none");
     }
 }
+
+$(".taskImageClick").click(function (event) {
+    let imageContainer = $(event.target);
+    // console.log(imageContainer.attr("data-isToggled"));
+    if (imageContainer.attr("data-isToggled") == "false") {
+        imageContainer.attr("data-isToggled", "true");
+        imageContainer.attr("src", starOn);
+    } else {
+        imageContainer.attr("data-isToggled", "false");
+        imageContainer.attr("src", starOff);
+    };
+});
 
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
