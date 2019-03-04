@@ -133,7 +133,7 @@ a:focus {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #B4D2E7;
+  background: #d8e8f3;
   color: #353535; }
 
 #sidebar ul.components {
@@ -146,7 +146,7 @@ a:focus {
 
 #sidebar ul li a:hover {
   color: #353535;
-  background: #B4D2E7; }
+  background: #d8e8f3; }
 
 a[data-toggle="collapse"] {
   position: relative; }
@@ -172,10 +172,10 @@ a[data-toggle="collapse"] {
 
 .mainButton {
   background-color: #274156;
-  border-color: #B4D2E7; }
+  border-color: #d8e8f3; }
 
 .mainButton:hover {
-  background-color: #B4D2E7;
+  background-color: #d8e8f3;
   border-color: #274156;
   color: #353535; }
 
@@ -198,8 +198,8 @@ a[data-toggle="collapse"] {
   flex: 1; }
 
 .taskItem {
-  background-color: #274156;
-  color: #FFFFFF;
+  background-color: #d8e8f3;
+  color: #353535;
   width: 90%;
   height: 15%;
   max-height: 15%;
@@ -209,18 +209,23 @@ a[data-toggle="collapse"] {
   border-radius: 15px 15px 15px 15px; }
 
 .taskHeader {
-  background-color: #B4D2E7;
-  color: #353535;
+  background-color: #274156;
+  color: #FFFFFF;
   height: 33%;
   width: 100%;
   text-align: center;
   border-radius: 0 0 15px 15px;
   position: relative; }
 
-.taskImage {
+.importantImage {
   height: 34px;
   position: absolute;
   left: -40px; }
+
+.doneImage {
+  height: 34px;
+  position: absolute;
+  right: 40px; }
 
 .taskBody {
   height: 66%;

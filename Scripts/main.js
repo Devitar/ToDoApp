@@ -9,6 +9,8 @@ let savedTasks = localStorage.getItem("SavedTasks");
 
 let starOff = "Assets/Images/starEmpty.png";
 let starOn = "Assets/Images/starFull.png";
+let doneOff = "Assets/Images/checkBoxEmpty.png";
+let doneOn = "Assets/Images/checkBoxFull.png";
 
 class Task {
     constructor(description, status) {
@@ -66,15 +68,30 @@ window.onclick = function (event) {
 //
 
 //Mark task as important
-$(".taskImageClick").click(function (event) {
+$(".importantImageClick").click(function (event) {
     let imageContainer = $(event.target);
+    let mainTask = imageContainer.parents("div");
     // console.log(imageContainer.attr("data-isToggled"));
-    if (imageContainer.attr("data-isToggled") == "false") {
-        imageContainer.attr("data-isToggled", "true");
+    if (mainTask.attr("data-isImportant") == "false") {
+        mainTask.attr("data-isImportant", "true");
         imageContainer.attr("src", starOn);
     } else {
-        imageContainer.attr("data-isToggled", "false");
+        mainTask.attr("data-isImportant", "false");
         imageContainer.attr("src", starOff);
+    };
+});
+//
+//Mark task as done
+$(".doneImageClick").click(function (event) {
+    let imageContainer = $(event.target);
+    let mainTask = imageContainer.parents("div");
+    // console.log(imageContainer.attr("data-isToggled"));
+    if (mainTask.attr("data-isDone") == "false") {
+        mainTask.attr("data-isDone", "true");
+        imageContainer.attr("src", doneOn);
+    } else {
+        mainTask.attr("data-isDone", "false");
+        imageContainer.attr("src", doneOff);
     };
 });
 //
@@ -104,7 +121,8 @@ $(document).ready(function () {
 >jquery .children() returns an array of the element's children
 >use an upward counting variable to assign unique ID's to the lists
 >jquery .append() to add an HTML element to the prepended element
-
+>jquery $("elementThing").parents("div") this grabs the nearest parent div
+    and creates a jquery object out of it.
 
 sample code i made online as notes:
 

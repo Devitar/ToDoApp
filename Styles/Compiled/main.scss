@@ -5,7 +5,7 @@
 $paletteBackground: #EDEDED;
 $paletteBlack: #353535;
 $paletteGreen: #3C6E71;
-$paletteLightBlue: #B4D2E7;
+$paletteLightBlue: #d8e8f3;//#B4D2E7;
 $paletteBlue: #274156;
 $paletteShadow: rgba(0, 0, 0, 0.5);
 
@@ -263,8 +263,8 @@ a[data-toggle="collapse"] {
 }
 
 .taskItem {
-    background-color: $paletteBlue;
-    color: #FFFFFF;
+    background-color: $paletteLightBlue;
+    color: $paletteBlack;//FFFFFF;
     width: 90%;
     // max-width: 90%;
     height: 15%;
@@ -276,8 +276,8 @@ a[data-toggle="collapse"] {
 }
 
 .taskHeader {
-    background-color: $paletteLightBlue;
-    color: $paletteBlack;
+    background-color: $paletteBlue;
+    color: #FFFFFF;
     height: 33%;
     width: 100%;
     text-align: center;
@@ -285,10 +285,16 @@ a[data-toggle="collapse"] {
     position: relative;
 }
 
-.taskImage {
+.importantImage {
     height: 34px;
     position: absolute;
     left: -40px;
+}
+
+.doneImage {
+    height: 34px;
+    position: absolute;
+    right: 40px;
 }
 
 .taskBody {
