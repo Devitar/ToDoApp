@@ -87,14 +87,14 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
     if (savedTasks != null) {
-        currentTasks = JSON.parse(savedTasks);
-        allLists = Object.keys(currentTasks);
-        for (let i = 0; i < allLists.length; i++) {
-            //Must loop through each, and parse it
-            //Add list to HTML with jQuery .append()
+        allLists = JSON.parse(savedTasks);
+        numOfLists = Object.keys(allTasks);
+        for (let i = 0; i < numOfLists.length; i++) {
+            //Create list here using let list1 = allLists[numOfLists[i]];
+            // for (let listIndex = 0; listIndex < )
         };
     } else {
-        //Prompt to create new task
+        //Prompt to create new list
         mainModal.css("display", "block");
     };
 });
