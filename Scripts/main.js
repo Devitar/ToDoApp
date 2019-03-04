@@ -70,7 +70,7 @@ window.onclick = function (event) {
 //Mark task as important
 $(".importantImageClick").click(function (event) {
     let imageContainer = $(event.target);
-    let mainTask = imageContainer.parents("div");
+    let mainTask = imageContainer.parent().parent();
     // console.log(imageContainer.attr("data-isToggled"));
     if (mainTask.attr("data-isImportant") == "false") {
         mainTask.attr("data-isImportant", "true");
@@ -84,7 +84,7 @@ $(".importantImageClick").click(function (event) {
 //Mark task as done
 $(".doneImageClick").click(function (event) {
     let imageContainer = $(event.target);
-    let mainTask = imageContainer.parents("div");
+    let mainTask = imageContainer.parent().parent();
     // console.log(imageContainer.attr("data-isToggled"));
     if (mainTask.attr("data-isDone") == "false") {
         mainTask.attr("data-isDone", "true");
