@@ -208,18 +208,19 @@ a[data-toggle="collapse"] {
   word-wrap: break-word;
   border-radius: 15px 15px 15px 15px; }
 
-.taskImage {
-  width: 5%;
-  position: absolute;
-  left: -6%; }
-
 .taskHeader {
   background-color: #B4D2E7;
   color: #353535;
   height: 33%;
   width: 100%;
   text-align: center;
-  border-radius: 0 0 15px 15px; }
+  border-radius: 0 0 15px 15px;
+  position: relative; }
+
+.taskImage {
+  height: 100%;
+  position: absolute;
+  left: -6%; }
 
 .taskBody {
   height: 66%;

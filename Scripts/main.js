@@ -53,6 +53,7 @@ function SaveData() {
     localStorage.setItem("SavedTasks", JSON.stringify(currentTasks));
 };
 
+//Close the modal
 modalCloseButton.click(function () {
     mainModal.css("display", "none");
 });
@@ -62,7 +63,9 @@ window.onclick = function (event) {
         mainModal.css("display", "none");
     }
 }
+//
 
+//Mark task as important
 $(".taskImageClick").click(function (event) {
     let imageContainer = $(event.target);
     // console.log(imageContainer.attr("data-isToggled"));
@@ -74,7 +77,9 @@ $(".taskImageClick").click(function (event) {
         imageContainer.attr("src", starOff);
     };
 });
+//
 
+//Initial startup
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
@@ -93,7 +98,7 @@ $(document).ready(function () {
         mainModal.css("display", "block");
     };
 });
-
+//
 
 /* remember
 >jquery .children() returns an array of the element's children
