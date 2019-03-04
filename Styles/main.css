@@ -232,6 +232,10 @@ a[data-toggle="collapse"] {
   height: 66%;
   width: 100%; }
 
+.fabImg {
+  height: 100%;
+  width: 100%; }
+
 .mainFooter {
   position: absolute;
   left: 0;
