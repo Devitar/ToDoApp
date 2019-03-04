@@ -218,14 +218,14 @@ a[data-toggle="collapse"] {
   position: relative; }
 
 .importantImage {
-  height: 34px;
   position: absolute;
+  height: 34px;
   left: -40px; }
 
 .doneImage {
-  height: 34px;
   position: absolute;
   top: 0;
+  height: 34px;
   left: 101%; }
 
 .taskBody {
@@ -258,4 +258,14 @@ a[data-toggle="collapse"] {
 
 @media (min-width: 1280px) {
   .topHeader {
-    margin-right: 40%; } }
+    margin-right: 40%; }
+  .doneImage {
+    height: 48px; }
+  .importantImage {
+    height: 48px; }
+  .doneImage {
+    height: 44px;
+    left: 101%; }
+  .importantImage {
+    height: 44px;
+    left: -50px; } }

@@ -5,7 +5,7 @@
 $paletteBackground: #EDEDED;
 $paletteBlack: #353535;
 $paletteGreen: #3C6E71;
-$paletteLightBlue: #d8e8f3;//#B4D2E7;
+$paletteLightBlue: #d8e8f3; //#B4D2E7;
 $paletteBlue: #274156;
 $paletteShadow: rgba(0, 0, 0, 0.5);
 
@@ -264,7 +264,7 @@ a[data-toggle="collapse"] {
 
 .taskItem {
     background-color: $paletteLightBlue;
-    color: $paletteBlack;//FFFFFF;
+    color: $paletteBlack; //FFFFFF;
     width: 90%;
     // max-width: 90%;
     height: 15%;
@@ -286,15 +286,15 @@ a[data-toggle="collapse"] {
 }
 
 .importantImage {
-    height: 34px;
     position: absolute;
+    height: 34px;
     left: -40px;
 }
 
 .doneImage {
-    height: 34px;
     position: absolute;
     top: 0;
+    height: 34px;
     left: 101%;
 }
 
@@ -331,10 +331,6 @@ a[data-toggle="collapse"] {
         width: 100%;
     }
 
-    // #content.active {
-    //     width: calc(100% - 250px);
-    // }
-
     #sidebarCollapse span {
         display: none;
     }
@@ -342,20 +338,28 @@ a[data-toggle="collapse"] {
     .topHeader {
         margin-right: 4%;
     }
-
-    // .modal-content {
-    //     width: 100%;
-    // }
 }
-
-// @media (max-width: 1280px) {
-//     .modal-content {
-//         width: 60%;
-//     }
-// }
 
 @media (min-width: 1280px) {
     .topHeader {
         margin-right: 40%;
+    }
+
+    .doneImage {
+        height: 48px;
+    }
+
+    .importantImage {
+        height: 48px;
+    }
+
+    .doneImage {
+        height: 44px;
+        left: 101%;
+    }
+
+    .importantImage {
+        height: 44px;
+        left: -50px;
     }
 }
