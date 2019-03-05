@@ -1,11 +1,14 @@
-let mainModal = $('#mainModal');
-let modalCloseButton = $("#modalClose");
+let allLists = {}; //Main object, saves/loads to local storage
+let currentList = null; //Keeps track of the currently used list
 
-let currentTasks = {};
-let allLists = [];
-let currentList = "";
+let savedTasks = localStorage.getItem("SavedTasks"); //Gets saved tasks, parsed later into allLists
+let currentId = localStorage.getItem("CurrentID");
 
-let savedTasks = localStorage.getItem("SavedTasks");
+let mainModal = $('#mainModal'); //Main greeting modal
+let modalCloseButton = $("#modalClose"); //Cose button for mainModal
+
+let sideBarList = $("#list1");
+let tasksSpot = $("#body");
 
 let starOff = "Assets/Images/starEmpty.png";
 let starOn = "Assets/Images/starFull.png";
@@ -13,10 +16,10 @@ let doneOff = "Assets/Images/checkBoxEmpty.png";
 let doneOn = "Assets/Images/checkBoxFull.png";
 
 class Task {
-    constructor(description, status) {
+    constructor(description, header, list) {
         this.Description = description;
-        this.Status = status;
-        currentTasks[currentList].Content.push(this);
+        this.Header = header;
+        list.Content.push(this);
     };
     DeleteAnimate() {
         //this.animate({parameters},speed,callback);
@@ -28,31 +31,49 @@ class Task {
 class List {
     constructor(name) {
         this.Name = name;
+        this.Id = GenerateId();
         this.Content = [];
-        currentTasks[this.Name] = this;
+        allLists[this.Name] = this;
+        this.AddToDOM(); //Add list to DOM automatically on create
+        this.Save(); //Save on new list create
     };
     Load() {
-        ClearPage();
-        let parsedArray = JSON.parse(stringedArray);
-        console.log(parsedArray);
-        let allKeys = Object.keys(parsedArray);
-        for (let i = 0; i < allKeys.length; i++) {
-            let currentArray = parsedArray[allKeys[i]];
-            console.log(currentArray);
-            for (let i2 = 0; i2 < currentArray.length; i2++) {
-                console.log(currentArray[i2]);
-            };
+        if (currentList /= null){
+            currentList.Save();
+            ClearPage();
         };
-        //Add content to HTML
-    }
+        currentList = this;
+        for (let i = 0; i < this.Content.length; i++) {
+            tasksSpot.append(this.Content[i]);
+        };
+    };
+    Save() {
+        // $(`#${this.Id}`)
+        this.Content = [];
+        let allTasks =  $("#body").children();
+        for (let i = 0; i < allTasks.length; i++){
+            this.Content.push(JSON.stringify(allTasks[i]));
+        };
+        SaveData(); //Push allLists to local storage
+    };
+    AddToDOM() {
+        let listString = "<li class=`listItem` id=`"+this.Id+"`><a href=`#`>"+this.Name+"</a></li>";
+        sideBarList.append(listString);
+    };
 };
 
 function ClearPage() {
     $(".taskItem").remove();
-}
+};
 
 function SaveData() {
-    localStorage.setItem("SavedTasks", JSON.stringify(currentTasks));
+    localStorage.setItem("SavedTasks", JSON.stringify(allLists));
+    localStorage.setItem("CurrentID", currentId.toString());
+};
+
+function GenerateId() {
+    currentId = currentId + 1;
+    return currentId;
 };
 
 //Close the modal
@@ -63,8 +84,8 @@ window.onclick = function (event) {
     let eventTarget = $(event.target);
     if (event.target == mainModal[0]) {
         mainModal.css("display", "none");
-    }
-}
+    };
+};
 //
 
 //Mark task as important
@@ -97,6 +118,28 @@ $(".doneImageClick").click(function (event) {
 });
 //
 
+//List click
+$(".listItem").click(function (event) {
+    let target = $(event.target).parent();
+    // console.log(target.attr("id"));
+
+});
+//
+
+//New list click
+$("#newList").click(function (event) {
+    let target = $(event.target).parent();
+    //console.log(target.attr("id"));
+});
+//
+
+//New task click
+$("#newTask").click(function (event) {
+    let target = $(event.target).parent();
+    //console.log(target.attr("id"));
+});
+//
+
 //Initial startup
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
@@ -105,14 +148,21 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
     if (savedTasks != null) {
+        currentId = currentId.Number();
+        if (currentId.isNaN()){
+            console.log("currentId is NaN! Setting to 0");
+            currentId = 0;
+        };
+
         allLists = JSON.parse(savedTasks);
-        numOfLists = Object.keys(allTasks);
+        numOfLists = Object.keys(allLists);
         for (let i = 0; i < numOfLists.length; i++) {
             //Create list here using let list1 = allLists[numOfLists[i]];
             // for (let listIndex = 0; listIndex < )
         };
     } else {
         //Prompt to create new list
+        currentId = 0; //Set the current task ID count to 0 (first time run)
         mainModal.css("display", "block");
     };
 });
