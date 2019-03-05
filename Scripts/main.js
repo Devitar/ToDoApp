@@ -21,6 +21,24 @@ class Task {
         this.Header = header;
         list.Content.push(this);
     };
+    AddToDOM() {
+        let taskString = "<div class=`taskItem col-12` data-isDone=`false` data-isImportant=`false`> \
+        <a class=`importantImageClick`> \
+            <img src=`Assets/Images/starEmpty.png` alt=`Empty Star Icon` class=`importantImage`> \
+        </a> \
+        <div class=`taskHeader`> \
+            "+this.Header+" \
+        </div> \
+        <a class=`doneImageClick`> \
+            <img src=`Assets/Images/checkBoxEmpty.png` alt=`Empty Check Box Icon` class=`doneImage`> \
+        </a> \
+        <div class=`taskBody`> \
+            "+this.Description+" \
+        </div> \
+        </div> \
+        ";
+        tasksSpot.append(taskString);
+    };
     DeleteAnimate() {
         //this.animate({parameters},speed,callback);
     };
@@ -40,8 +58,8 @@ class List {
     Load() {
         if (currentList /= null){
             currentList.Save();
-            ClearPage();
         };
+        ClearPage();
         currentList = this;
         for (let i = 0; i < this.Content.length; i++) {
             tasksSpot.append(this.Content[i]);
@@ -54,10 +72,12 @@ class List {
         for (let i = 0; i < allTasks.length; i++){
             this.Content.push(JSON.stringify(allTasks[i]));
         };
-        SaveData(); //Push allLists to local storage
+        SaveData();
     };
     AddToDOM() {
-        let listString = "<li class=`listItem` id=`"+this.Id+"`><a href=`#`>"+this.Name+"</a></li>";
+        let listString = "<li class=`listItem` id=`"+this.Id+"`> \
+        <a href=`#`>"+this.Name+"</a> \
+        </li>";
         sideBarList.append(listString);
     };
 };
