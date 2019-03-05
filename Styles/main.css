@@ -66,6 +66,34 @@ body {
   background-color: #274156;
   color: #ffffff; }
 
+.modalInput {
+  width: 20%; }
+
+.modalInputLarge {
+  width: 70%; }
+
+#modalListClose {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold; }
+
+#modalListClose:hover,
+#modalListClose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer; }
+
+#modalTaskClose {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold; }
+
+#modalTaskClose:hover,
+#modalTaskClose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer; }
+
 @-webkit-keyframes slideIn {
   from {
     bottom: -300px;
@@ -143,6 +171,9 @@ a:focus {
   padding: 10px;
   font-size: 1.1em;
   display: block; }
+
+.listItem {
+  border-bottom: 2px solid #d8e8f3; }
 
 #sidebar ul li a:hover {
   color: #353535;
@@ -258,7 +289,17 @@ a[data-toggle="collapse"] {
   #sidebarCollapse span {
     display: none; }
   .topHeader {
-    margin-right: 4%; } }
+    margin-right: 4%; }
+  .modalInput {
+    width: 80%;
+    display: block; }
+  .modalInputLarge {
+    width: 80%;
+    display: block; }
+  .modalSaveButton {
+    left: 40%;
+    position: relative;
+    margin-top: 5px; } }
 
 @media (min-width: 1280px) {
   .topHeader {

@@ -29,6 +29,34 @@
 </head>
 
 <body>
+    <div id="createListModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create a new List</h2>
+                <span id="modalListClose">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h5>Input a name for your list, then press save!</h5>
+                <input type="text" class="modalInput" id="newListInput" placeholder="List Name:">
+                <button type="button" id="modalListSave" class="modalSaveButton">Save</button>
+            </div>
+        </div>
+    </div>
+    <div id="createTaskModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Create a new Task</h2>
+                    <span id="modalTaskClose">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <h5>Input a name for your task, then press save!</h5>
+                    <input type="text" class="modalInput" id="newTaskInput" placeholder="Task Name:">
+                    <input type="text" class="modalInputLarge" id="newTaskInputBody" placeholder="Task Description:">
+                    <button type="button" id="modalTaskSave" class="modalSaveButton">Save</button>
+                </div>
+            </div>
+        </div>
+
     <div id="mainModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,21 +76,7 @@
             </div> -->
         </div>
     </div>
-    <div id="createListModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Create a new List</h2>
-                    <span id="modalListClose">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <h5>Input a name for your list, then press save!</h5>
-                    <input type="text" class="modalInput" id="newListInput">
-                </div>
-                <!-- <div class="modal-footer">
-                    <p>Click anywhere or press the X to close this box.</p>
-                </div> -->
-            </div>
-        </div>
+
 
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -104,7 +118,7 @@
 
             </div>
             <div class="container">
-                    <div class="line col-12"></div>
+                <div class="line col-12"></div>
                 <div id="body" class="row">
 
                     <!-- <div class="taskItem col-12" data-isDone="false" data-isImportant="false">
@@ -133,7 +147,7 @@
                 <p>Footer</p>
             </div> -->
         </div>
-        <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+        <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;" id="FABMain">
             <a class="btn-floating btn-large red">
                 <!-- <i class="large material-icons">mode_edit</i> -->
                 <img src="Assets/Images/edit.png" alt="Edit button" class="fabImg">

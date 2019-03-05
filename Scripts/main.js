@@ -4,14 +4,25 @@ let currentList = null; //Keeps track of the currently used list
 let savedTasks = localStorage.getItem("SavedTasks"); //Gets saved tasks, parsed later into allLists
 let currentId = localStorage.getItem("CurrentID");
 
+//Modal stuff
 let mainModal = $("#mainModal"); //Main greeting modal
 let modalCloseButton = $("#modalClose"); //Cose button for mainModal
 
 let newListModal = $("#createListModal");
-let newListModalClose = $("modalListClose");
+let newListModalClose = $("#modalListClose");
+
+let newTaskModal = $("#createTaskModal");
+let newTaskModalClose = $("#modalTaskClose");
 
 let sideBarList = $("#list1");
 let tasksSpot = $("#body");
+//
+
+//FAB buttons
+let mainFAB = $("#FABMain")
+let newListButton = $("#newList");
+let newTaskButton = $("#newTask");
+//
 
 let starOff = "Assets/Images/starEmpty.png";
 let starOn = "Assets/Images/starFull.png";
@@ -25,18 +36,18 @@ class Task {
         list.Content.push(this);
     };
     AddToDOM() {
-        let taskString = "<div class=`taskItem col-12` data-isDone=`false` data-isImportant=`false`> \
+        let taskString = "<div class=taskItem col-12 data-isDone=false data-isImportant=false> \
         <a class=`importantImageClick`> \
-            <img src=`Assets/Images/starEmpty.png` alt=`Empty Star Icon` class=`importantImage`> \
+            <img src=Assets/Images/starEmpty.png alt=Empty Star Icon class=importantImage> \
         </a> \
-        <div class=`taskHeader`> \
-            "+this.Header+" \
+        <div class=taskHeader> \
+            " + this.Header + " \
         </div> \
-        <a class=`doneImageClick`> \
-            <img src=`Assets/Images/checkBoxEmpty.png` alt=`Empty Check Box Icon` class=`doneImage`> \
+        <a class=doneImageClick> \
+            <img src=Assets/Images/checkBoxEmpty.png alt=Empty Check Box Icon class=doneImage> \
         </a> \
-        <div class=`taskBody`> \
-            "+this.Description+" \
+        <div class=taskBody> \
+            " + this.Description + " \
         </div> \
         </div> \
         ";
@@ -60,7 +71,7 @@ class List {
         this.Save(); //Save on new list create
     };
     Load() {
-        if (currentList /= null){
+        if (currentList /= null) {
             currentList.Save();
         };
         ClearPage();
@@ -72,15 +83,15 @@ class List {
     Save() {
         // $(`#${this.Id}`)
         this.Content = [];
-        let allTasks =  $("#body").children();
-        for (let i = 0; i < allTasks.length; i++){
+        let allTasks = $("#body").children();
+        for (let i = 0; i < allTasks.length; i++) {
             this.Content.push(JSON.stringify(allTasks[i]));
         };
         SaveData();
     };
     AddToDOM() {
-        let listString = "<li class=`listItem` id=`"+this.Id+"`> \
-        <a href=`#`>"+this.Name+"</a> \
+        let listString = "<li class=listItem id=" + this.Id + "> \
+        <a>" + this.Name + "</a> \
         </li>";
         sideBarList.append(listString);
     };
@@ -108,19 +119,23 @@ window.onclick = function (event) {
     // let eventTarget = $(event.target);
     if (event.target == mainModal[0]) {
         mainModal.css("display", "none");
+    }else if (event.target == newListModal[0]){
+        newListModal.css("display", "none");
+    }else if (event.target == newTaskModal[0]){
+        newTaskModal.css("display", "none");
     };
 };
+
 //
 //Close the new list modal
 newListModalClose.click(function () {
     newListModal.css("display", "none");
 });
-window.onclick = function (event) {
-    // let eventTarget = $(event.target);
-    if (event.target == newListModal[0]) {
-        newListModal.css("display", "none");
-    };
-};
+//
+//Close the new task modal
+newTaskModalClose.click(function () {
+    newTaskModal.css("display", "none");
+});
 //
 
 //Mark task as important
@@ -156,20 +171,43 @@ $(".doneImageClick").click(function (event) {
 //List click
 $(".listItem").click(function (event) {
     let target = $(event.target).parent();
-    // console.log(target.attr("id"));
-
+    //Edit task
 });
 //
 
 //New list click
-$("#newList").click(function (event) {
+newListButton.click(function (event) {
+    mainModal.css("display", "none");
+    newTaskModal.css("display", "none");
     newListModal.css("display", "block");
+    mainFAB.removeClass("active");
+});
+$("#modalListSave").click(function (event) {
+    let newListName = $("#newListInput").val();
+    if (newListName == ""){
+        newListName = "Unnamed List";
+    };
+    let newTempList = new List(newListName);
 });
 //
 
 //New task click
-$("#newTask").click(function (event) {
-    // newTaskModal.css("display", "block");
+newTaskButton.click(function (event) {
+    mainModal.css("display", "none");
+    newListModal.css("display", "none");
+    newTaskModal.css("display", "block");
+    mainFAB.removeClass("active");
+});
+$("#modalTaskSave").click(function (event) {
+    let newTaskName = $("#newTaskInput").val();
+    if (newTaskName == ""){
+        newTaskName = "Unnamed Task";
+    };
+    let newTaskBody = $("#newTaskInputBody").val();
+    if (newTaskName == ""){
+        newTaskName = "Unnamed Task";
+    };
+    let newTempTask = new Task("", "", currentList);
 });
 //
 
@@ -181,8 +219,8 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
     if (savedTasks != null) {
-        currentId = currentId.Number();
-        if (currentId.isNaN()){
+        currentId = Number(currentId);
+        if (isNaN(currentId)) {
             console.log("currentId is NaN! Setting to 0");
             currentId = 0;
         };
@@ -207,6 +245,7 @@ $(document).ready(function () {
 >jquery .append() to add an HTML element to the prepended element
 >jquery $("elementThing").parents("div") this grabs the nearest parent div
     and creates a jquery object out of it.
+>setTimeout(function(){ alert("Hello"); }, 3000); waits 3 seconds
 
 sample code i made online as notes:
 
