@@ -4,8 +4,11 @@ let currentList = null; //Keeps track of the currently used list
 let savedTasks = localStorage.getItem("SavedTasks"); //Gets saved tasks, parsed later into allLists
 let currentId = localStorage.getItem("CurrentID");
 
-let mainModal = $('#mainModal'); //Main greeting modal
+let mainModal = $("#mainModal"); //Main greeting modal
 let modalCloseButton = $("#modalClose"); //Cose button for mainModal
+
+let newListModal = $("#createListModal");
+let newListModalClose = $("modalListClose");
 
 let sideBarList = $("#list1");
 let tasksSpot = $("#body");
@@ -41,6 +44,7 @@ class Task {
     };
     DeleteAnimate() {
         //this.animate({parameters},speed,callback);
+        $(this).delete();
     };
     ImportantAnimate() {
         //this.animate({parameters},speed,callback);
@@ -96,14 +100,25 @@ function GenerateId() {
     return currentId;
 };
 
-//Close the modal
+//Close the greeting modal
 modalCloseButton.click(function () {
     mainModal.css("display", "none");
 });
 window.onclick = function (event) {
-    let eventTarget = $(event.target);
+    // let eventTarget = $(event.target);
     if (event.target == mainModal[0]) {
         mainModal.css("display", "none");
+    };
+};
+//
+//Close the new list modal
+newListModalClose.click(function () {
+    newListModal.css("display", "none");
+});
+window.onclick = function (event) {
+    // let eventTarget = $(event.target);
+    if (event.target == newListModal[0]) {
+        newListModal.css("display", "none");
     };
 };
 //
@@ -148,15 +163,13 @@ $(".listItem").click(function (event) {
 
 //New list click
 $("#newList").click(function (event) {
-    let target = $(event.target).parent();
-    //console.log(target.attr("id"));
+    newListModal.css("display", "block");
 });
 //
 
 //New task click
 $("#newTask").click(function (event) {
-    let target = $(event.target).parent();
-    //console.log(target.attr("id"));
+    // newTaskModal.css("display", "block");
 });
 //
 
