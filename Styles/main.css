@@ -94,6 +94,10 @@ body {
   text-decoration: none;
   cursor: pointer; }
 
+.listItem.active {
+  background-color: #d8e8f3;
+  color: #353535; }
+
 @-webkit-keyframes slideIn {
   from {
     bottom: -300px;

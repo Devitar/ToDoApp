@@ -62,13 +62,16 @@ class Task {
     };
 };
 class List {
-    constructor(name) {
+    constructor(name, initialize) {
         this.Name = name;
         this.Id = GenerateId();
         this.Content = [];
-        allLists[this.Name] = this;
+        if (initialize != null) {
+            console.log("Creating new non initial list");
+            allLists[this.Name] = this;
+            this.Save(); //Save on new list create
+        };
         this.AddToDOM(); //Add list to DOM automatically on create
-        this.Save(); //Save on new list create
     };
     Load() {
         if (currentList /= null) {
@@ -119,9 +122,9 @@ window.onclick = function (event) {
     // let eventTarget = $(event.target);
     if (event.target == mainModal[0]) {
         mainModal.css("display", "none");
-    }else if (event.target == newListModal[0]){
+    } else if (event.target == newListModal[0]) {
         newListModal.css("display", "none");
-    }else if (event.target == newTaskModal[0]){
+    } else if (event.target == newTaskModal[0]) {
         newTaskModal.css("display", "none");
     };
 };
@@ -168,12 +171,14 @@ $(".doneImageClick").click(function (event) {
 });
 //
 
-//List click
-$(".listItem").click(function (event) {
-    let target = $(event.target).parent();
-    //Edit task
+// List click
+$("#list1").on("click", "li", function (event) {
+    let target = $(this);
+    // console.log(target, target.text(), target.attr("class"))
+    $(".listItem").removeClass("active");
+    target.addClass("active");
 });
-//
+
 
 //New list click
 newListButton.click(function (event) {
@@ -184,10 +189,10 @@ newListButton.click(function (event) {
 });
 $("#modalListSave").click(function (event) {
     let newListName = $("#newListInput").val();
-    if (newListName == ""){
+    if (newListName == "") {
         newListName = "Unnamed List";
     };
-    let newTempList = new List(newListName);
+    let newTempList = new List(newListName, true);
 });
 //
 
@@ -200,14 +205,15 @@ newTaskButton.click(function (event) {
 });
 $("#modalTaskSave").click(function (event) {
     let newTaskName = $("#newTaskInput").val();
-    if (newTaskName == ""){
+    if (newTaskName == "") {
         newTaskName = "Unnamed Task";
     };
     let newTaskBody = $("#newTaskInputBody").val();
-    if (newTaskName == ""){
+    if (newTaskName == "") {
         newTaskName = "Unnamed Task";
     };
-    let newTempTask = new Task("", "", currentList);
+
+    // let newTempTask = new Task("", "", currentList);
 });
 //
 
@@ -228,8 +234,9 @@ $(document).ready(function () {
         allLists = JSON.parse(savedTasks);
         numOfLists = Object.keys(allLists);
         for (let i = 0; i < numOfLists.length; i++) {
-            //Create list here using let list1 = allLists[numOfLists[i]];
-            // for (let listIndex = 0; listIndex < )
+            let savedList = allLists[numOfLists[i]].Content;
+            let initialList = new List(numOfLists[i]);
+            initialList.Id
         };
     } else {
         //Prompt to create new list

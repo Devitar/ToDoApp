@@ -127,6 +127,11 @@ body {
     cursor: pointer;
 }
 
+.listItem.active {
+    background-color: $paletteLightBlue;
+    color: $paletteBlack;
+}
+
 @-webkit-keyframes slideIn {
     from {
         bottom: -300px;
