@@ -14,6 +14,8 @@ let newListModalClose = $("#modalListClose");
 let newTaskModal = $("#createTaskModal");
 let newTaskModalClose = $("#modalTaskClose");
 
+let sideBarList = $("#list1");
+let tasksSpot = $("#body");
 //
 
 //FAB buttons
