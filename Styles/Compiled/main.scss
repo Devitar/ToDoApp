@@ -95,6 +95,7 @@ body {
 .modalInput {
     width: 20%;
 }
+
 .modalInputLarge {
     width: 70%;
 }
@@ -342,6 +343,13 @@ a[data-toggle="collapse"] {
     left: 101%;
 }
 
+.garbageImage {
+    position: absolute;
+    height: 34px;
+    left: 101%;
+    top: 45px;
+}
+
 .taskBody {
     height: 66%;
     width: 100%;
@@ -392,12 +400,14 @@ a[data-toggle="collapse"] {
         width: 80%;
         display: block;
     }
+
     .modalInputLarge {
         width: 80%;
         display: block;
     }
+
     .modalSaveButton {
-        left:40%;
+        left: 40%;
         position: relative;
         margin-top: 5px;
     }
@@ -409,14 +419,6 @@ a[data-toggle="collapse"] {
     }
 
     .doneImage {
-        height: 48px;
-    }
-
-    .importantImage {
-        height: 48px;
-    }
-
-    .doneImage {
         height: 44px;
         left: 101%;
     }
@@ -425,4 +427,11 @@ a[data-toggle="collapse"] {
         height: 44px;
         left: -50px;
     }
+
+    .garbageImage {
+        height: 44px;
+        left: 101%;
+        top: 55px;
+    }
+
 }

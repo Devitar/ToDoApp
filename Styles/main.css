@@ -263,6 +263,12 @@ a[data-toggle="collapse"] {
   height: 34px;
   left: 101%; }
 
+.garbageImage {
+  position: absolute;
+  height: 34px;
+  left: 101%;
+  top: 45px; }
+
 .taskBody {
   height: 66%;
   width: 100%; }
@@ -309,12 +315,12 @@ a[data-toggle="collapse"] {
   .topHeader {
     margin-right: 40%; }
   .doneImage {
-    height: 48px; }
-  .importantImage {
-    height: 48px; }
-  .doneImage {
     height: 44px;
     left: 101%; }
   .importantImage {
     height: 44px;
-    left: -50px; } }
+    left: -50px; }
+  .garbageImage {
+    height: 44px;
+    left: 101%;
+    top: 55px; } }
