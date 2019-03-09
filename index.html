@@ -67,8 +67,9 @@
                 <h4>It looks like this is your first time using the To Do app!</h4>
                 <h5>
                     Click the Pencil button at the bottom right to get started! <br>
-                    The left (list) button creates a new list. <br>
-                    The right (check) button creates a new task under a list.
+                    &raquo;The left (list) button creates a new list. <br>
+                    &raquo;The middle (check) button creates a new task under a list. <br>
+                    &raquo;The right (garbage) button deletes all tasks marked as done.
                 </h5>
             </div>
             <!-- <div class="modal-footer">
@@ -121,7 +122,7 @@
                 <div class="line col-12"></div>
                 <div id="body" class="row">
 
-                    <div class="taskItem col-12" data-isDone="false" data-isImportant="false">
+                    <!-- <div class="taskItem col-12" data-isDone="false" data-isImportant="false">
                         <a class="importantImageClick">
                             <img src="Assets/Images/starEmpty.png" alt="Empty Star Icon" class="importantImage">
                         </a>
@@ -142,7 +143,7 @@
                             beef drumstick ground round boudin short ribs rump bacon. Tri-tip meatloaf filet mignon
                             tongue doner ham.
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -167,6 +168,12 @@
                     <a class="btn-floating bg-indigo" id="newTask">
                         <!-- <i class="material-icons">format_quote</i> -->
                         <img src="Assets/Images/newTask.png" alt="Create a new task button" class="fabImg">
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-floating bg-indigo" id="deleteAll" onclick="DeleteTaskAll()">
+                        <!-- <i class="material-icons">format_quote</i> -->
+                        <img src="Assets/Images/garbageWhite.png" alt="Delete all tasks button" class="fabImg">
                     </a>
                 </li>
             </ul>

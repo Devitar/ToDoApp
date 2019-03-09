@@ -1,4 +1,5 @@
 let savedTasks = localStorage.getItem("SavedTasks"); //Gets saved tasks, parsed later into allLists
+let parsedList;
 
 //Modal stuff
 let mainModal = $("#mainModal"); //Main greeting modal
@@ -31,54 +32,17 @@ window.onclick = function (event) {
         newTaskModal.css("display", "none");
     };
 };
-
 //
+
 //Close the new list modal
 newListModalClose.click(function () {
     newListModal.css("display", "none");
 });
 //
+
 //Close the new task modal
 newTaskModalClose.click(function () {
     newTaskModal.css("display", "none");
-});
-//
-
-//Mark task as important
-$(".importantImageClick").click(function (event) {
-    let imageContainer = $(event.target);
-    let mainTask = imageContainer.parent().parent();
-    // console.log(imageContainer.attr("data-isToggled"));
-    if (mainTask.attr("data-isImportant") == "false") {
-        mainTask.attr("data-isImportant", "true");
-        imageContainer.attr("src", starOn);
-    } else {
-        mainTask.attr("data-isImportant", "false");
-        imageContainer.attr("src", starOff);
-    };
-});
-//
-
-//Mark task as done
-$(".doneImageClick").click(function (event) {
-    let imageContainer = $(event.target);
-    let mainTask = imageContainer.parent().parent();
-    // console.log(imageContainer.attr("data-isToggled"));
-    if (mainTask.attr("data-isDone") == "false") {
-        mainTask.attr("data-isDone", "true");
-        imageContainer.attr("src", doneOn);
-    } else {
-        mainTask.attr("data-isDone", "false");
-        imageContainer.attr("src", doneOff);
-    };
-});
-//
-
-//Delete Task Single
-$(".garbageImageClick").click(function (event) {
-    let imageContainer = $(event.target);
-    let mainTask = imageContainer.parent().parent();
-
 });
 //
 
@@ -89,7 +53,7 @@ $("#list1").on("click", "li", function (event) {
     $(".listItem").removeClass("active");
     target.addClass("active");
 });
-
+//
 
 //New list click
 newListButton.click(function (event) {
@@ -116,17 +80,57 @@ newTaskButton.click(function (event) {
     mainFAB.removeClass("active");
 });
 $("#modalTaskSave").click(function (event) {
-    let newTaskName = $("#newTaskInput").val();
-    if (newTaskName == "") {
-        newTaskName = "Unnamed Task";
+    if (currentList != null){
+        let newTaskName = $("#newTaskInput").val();
+        if (newTaskName == "") {
+            newTaskName = "Unnamed Task";
+        };
+        let newTaskBody = $("#newTaskInputBody").val();
+        if (newTaskBody == "") {
+            newTaskBody = "No task description.";
+        };
+        currentList.NewTask(newTaskName, newTaskBody);
+        newTaskModal.css("display", "none");
+    }else{
+        alert("You must create a list before creating a task!");
     };
-    let newTaskBody = $("#newTaskInputBody").val();
-    if (newTaskBody == "") {
-        newTaskBody = "No task description.";
-    };
-    currentList.NewTask(newTaskName, newTaskBody);
-    newTaskModal.css("display", "none");
 });
+//
+
+//Task interaction
+function DeleteTaskDOM(key){
+    // console.log(element, key);
+    currentList.DeleteTask(key)
+};
+function MarkAsDone(key, event) {
+    let imageContainer = $(event.target);
+    let mainTask = currentList.Tasks[key];
+    
+    if (mainTask.IsDone == false) {
+        mainTask.IsDone = true;
+        imageContainer.attr("src", doneOn);
+    } else {
+        mainTask.IsDone = false;
+        imageContainer.attr("src", doneOff);
+    };
+};
+function MarkAsImportant(key, event) {
+    let imageContainer = $(event.target);
+    let mainTask = currentList.Tasks[key];
+    
+    if (mainTask.IsImportant == false) {
+        mainTask.IsImportant = true;
+        imageContainer.attr("src", starOn);
+    } else {
+        mainTask.IsImportant = false;
+        imageContainer.attr("src", starOff);
+    };
+};
+function DeleteTaskAll(){
+    if (currentList != null){
+        currentList.DeleteDone();
+    };
+};
 //
 
 //Initial startup
@@ -140,6 +144,8 @@ $(document).ready(function () {
         mainModal.css("display", "block");
     }else{
         //Load saved data
+        parsedList = JSON.parse(savedTasks);
+        currentList = parsedList.AllLists[0];
     };
 });
 //
@@ -148,7 +154,6 @@ $(document).ready(function () {
 >jquery .children() returns an array of the element's children
 >use an upward counting variable to assign unique ID's to the lists
 >jquery .append() to add an HTML element to the prepended element
->jquery $("elementThing").parents("div") this grabs the nearest parent div
-    and creates a jquery object out of it.
+>jquery $("elementThing").parent() this grabs the nearest parent and creates a jquery object out of it.
 >setTimeout(function(){ alert("Hello"); }, 3000); waits 3 seconds
 */
