@@ -12,24 +12,42 @@ class MainList {
     constructor() {
         this.AllLists = [];
     };
-    NewList(name) {
-        let newList = new List(name, this.AllLists.length);
-        this.AllLists.push(newList);
-        let listString = `<li class="listItem" id="${newList.ID}">` +
-            `<a href="#">${newList.Name}</a>` +
-            `</li>`;
-        listSpot.append(listString);
-        currentList = newList;
+    NewList(name, initialize = true, existingId = null) {
+        let newList;
+        if (initialize == true) {
+            let newId = existingId || this.AllLists.length;
+            newList = new List(name, newId);
+            this.AllLists.push(newList);
+            let listString = `<li class="listItem" id="${newList.ID}">` +
+                `<a href="#" onclick="SelectList(`+newList.ID+`, event)">${newList.Name}</a>` +
+                `<img src="Assets/Images/garbageColored.png" alt="Garbage can Icon" class="listImage" onclick="DeleteListDOM(` + newList.ID + `)">` +
+                `</li>`;
+            listSpot.append(listString);
+            currentList = newList;
+        } else {
+            newList = new List(name, existingId);
+            this.AllLists.push(newList);
+            UpdateLists();
+        };
+        SaveData();
+        return newList;
     };
     DeleteList(id) {
+        $(`#${id}`).delay(300).fadeOut(300);
         this.AllLists.splice(id, 1);
+        setTimeout(function () {
+            UpdateLists();
+        }, 600);
     };
     UpdateListProperty(id, property, value) {
         this.AllLists[id][property] = value;
+        SaveData();
     };
     LoadList(id) {
-        let selectedList = this.AllLists[id];
         ClearPage();
+        if (currentList){
+            LoadTasks(currentList.Tasks);
+        };
     };
 }
 
@@ -39,68 +57,69 @@ class List {
         this.ID = id;
         this.Tasks = [];
     }
-    NewTask(title, body, isImportant = false, isDone = false) {
-        let newTask = new Task(title, body, "Task" + this.Tasks.length, isImportant, isDone);
+    NewTask(title, body, isImportant = false, isDone = false, initialize = true, existingId = null, ) {
+        if (initialize == true) {
+            let newTaskInit = new Task(title, body, "Task" + this.Tasks.length, isImportant, isDone);
+            let importantImg = ((bool) => {
+                switch (bool) {
+                    case true:
+                        return starOn;
+                    case false:
+                        return starOff;
+                }
+            })(newTaskInit.IsImportant);
+            let doneImg = ((bool) => {
+                switch (bool) {
+                    case true:
+                        return doneOn;
+                    case false:
+                        return doneOff;
+                }
+            })(newTaskInit.IsDone);
 
-        let importantImg = ((bool) => {
-            switch (bool) {
-                case true:
-                    return starOn;
-                case false:
-                    return starOff;
-            }
-        })(newTask.IsImportant);
-        let doneImg = ((bool) => {
-            switch (bool) {
-                case true:
-                    return doneOn;
-                case false:
-                    return doneOff;
-            }
-        })(newTask.IsDone);
-
-        let taskString =
-            `<div class="taskItem col-12" id="${newTask.ID}">` +
-            `<a class="importantImageClick" onclick="MarkAsImportant(`+this.Tasks.length+`, event)">` +
-            `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
-            `</a>` +
-            `<div class="taskHeader">` +
-            newTask.Title +
-            `</div>` +
-            `<a class="doneImageClick" onclick="MarkAsDone(`+this.Tasks.length+`, event)">` +
-            `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
-            `</a>` +
-            `<a class="garbageImageClick" onclick="DeleteTaskDOM(`+this.Tasks.length+`)">` +
-            `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
-            `</a>` +
-            `<div class="taskBody">` +
-            newTask.Body +
-            `</div>` +
-            `</div>`;
-        //`<input onkeyup="addItem(this, this.value, event, `+ i +`)" type="text" placeholder="">`
-        this.Tasks.push(newTask);
-        taskSpot.append(taskString);
+            let taskString =
+                `<div class="taskItem col-12" id="${newTaskInit.ID}">` +
+                `<a class="importantImageClick" onclick="MarkAsImportant(` + this.Tasks.length + `, event)">` +
+                `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
+                `</a>` +
+                `<div class="taskHeader">` +
+                newTaskInit.Title +
+                `</div>` +
+                `<a class="doneImageClick" onclick="MarkAsDone(` + this.Tasks.length + `, event)">` +
+                `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
+                `</a>` +
+                `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + this.Tasks.length + `)">` +
+                `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
+                `</a>` +
+                `<div class="taskBody">` +
+                newTaskInit.Body +
+                `</div>` +
+                `</div>`;
+            this.Tasks.push(newTaskInit);
+            taskSpot.append(taskString);
+        } else {
+            let newTaskInit = new Task(title, body, existingId, isImportant, isDone);
+            this.Tasks.push(newTaskInit);
+        };
+        SaveData();
     }
     DeleteDone() {
-        let totalWaitTime = 600;
         for (let i = this.Tasks.length; i > 0; i--) {
-            if (this.Tasks[i-1].IsDone == true){
-                let taskID = this.Tasks[i-1].ID;
-                // totalWaitTime += 300;
+            if (this.Tasks[i - 1].IsDone == true) {
+                let taskID = this.Tasks[i - 1].ID;
                 $(`#${taskID}`).delay(300).fadeOut(300);
-                this.Tasks.splice(i-1, 1);
+                this.Tasks.splice(i - 1, 1);
             };
         };
-        setTimeout(function(){
+        setTimeout(function () {
             UpdateTasks();
-        }, totalWaitTime);
+        }, 600);
     };
     DeleteTask(key) {
         let selectedTask = this.Tasks[key];
         $(`#${selectedTask.ID}`).delay(300).fadeOut(300);
-        console.log(key, selectedTask);
         this.Tasks.splice(key, 1);
-        setTimeout(function(){
+        setTimeout(function () {
             UpdateTasks();
         }, 600);
     };
@@ -117,15 +136,28 @@ class Task {
 };
 
 function UpdateLists() {
-
+    ClearLists();
+    if (masterList.AllLists[0] != null) {
+        currentList = masterList.AllLists[0];
+        for (let i = 0; i < masterList.AllLists.length; i++) {
+            let newList = masterList.AllLists[i];
+            newList.ID = i;
+            let listString = `<li class="listItem" id="${newList.ID}">` +
+                `<a href="#" onclick="SelectList(`+newList.ID+`, event)">${newList.Name}</a>` +
+                `<img src="Assets/Images/garbageColored.png" alt="Garbage can Icon" class="listImage" onclick="DeleteListDOM(` + newList.ID + `)">` +
+                `</li>`;
+            listSpot.append(listString);
+        };
+    };
     SaveData();
+    masterList.LoadList(currentList.ID);
 };
 
 function UpdateTasks() {
     ClearPage();
     for (let i = 0; i < currentList.Tasks.length; i++) {
         let newTask = currentList.Tasks[i];
-        newTask.ID = "Task"+i;
+        newTask.ID = "Task" + i;
 
         let importantImg = ((bool) => {
             switch (bool) {
@@ -146,16 +178,16 @@ function UpdateTasks() {
 
         let taskString =
             `<div class="taskItem col-12" id="${newTask.ID}">` +
-            `<a class="importantImageClick" onclick="MarkAsImportant(`+i+`, event)">` +
+            `<a class="importantImageClick" onclick="MarkAsImportant(` + i + `, event)">` +
             `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
             `</a>` +
             `<div class="taskHeader">` +
             newTask.Title +
             `</div>` +
-            `<a class="doneImageClick" onclick="MarkAsDone(`+i+`, event)">` +
+            `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
             `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
             `</a>` +
-            `<a class="garbageImageClick" onclick="DeleteTaskDOM(`+i+`)">` +
+            `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + i + `)">` +
             `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
             `</a>` +
             `<div class="taskBody">` +
@@ -168,12 +200,55 @@ function UpdateTasks() {
     SaveData();
 };
 
-function LoadTasks(){
+function LoadTasks() {
+    for (let i = 0; i < currentList.Tasks.length; i++) {
+        let newTask = currentList.Tasks[i];
 
+        let importantImg = ((bool) => {
+            switch (bool) {
+                case true:
+                    return starOn;
+                case false:
+                    return starOff;
+            }
+        })(newTask.IsImportant);
+        let doneImg = ((bool) => {
+            switch (bool) {
+                case true:
+                    return doneOn;
+                case false:
+                    return doneOff;
+            }
+        })(newTask.IsDone);
+
+        let taskString =
+            `<div class="taskItem col-12" id="${newTask.ID}">` +
+            `<a class="importantImageClick" onclick="MarkAsImportant(` + i + `, event)">` +
+            `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
+            `</a>` +
+            `<div class="taskHeader">` +
+            newTask.Title +
+            `</div>` +
+            `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
+            `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
+            `</a>` +
+            `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + i + `)">` +
+            `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
+            `</a>` +
+            `<div class="taskBody">` +
+            newTask.Body +
+            `</div>` +
+            `</div>`;
+        taskSpot.append(taskString);
+    };
 };
 
 function ClearPage() {
     $(".taskItem").remove();
+};
+
+function ClearLists() {
+    $(".listItem").remove();
 };
 
 function SaveData() {

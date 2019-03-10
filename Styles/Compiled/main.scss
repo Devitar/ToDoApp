@@ -241,6 +241,14 @@ a:focus {
 
 .listItem {
     border-bottom: 2px solid $paletteLightBlue;
+    position: relative;
+}
+
+.listImage {
+    position: absolute;
+    top: 10%;
+    height: 34px;
+    right: 17px;
 }
 
 #sidebar ul li a:hover {

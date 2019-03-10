@@ -46,15 +46,6 @@ newTaskModalClose.click(function () {
 });
 //
 
-// List click
-$("#list1").on("click", "li", function (event) {
-    let target = $(this);
-    // console.log(target, target.text(), target.attr("class"))
-    $(".listItem").removeClass("active");
-    target.addClass("active");
-});
-//
-
 //New list click
 newListButton.click(function (event) {
     mainModal.css("display", "none");
@@ -79,8 +70,8 @@ newTaskButton.click(function (event) {
     newTaskModal.css("display", "block");
     mainFAB.removeClass("active");
 });
-$("#modalTaskSave").click(function (event) {
-    if (currentList != null){
+function NewTaskDOM() {
+    if (currentList != null) {
         let newTaskName = $("#newTaskInput").val();
         if (newTaskName == "") {
             newTaskName = "Unnamed Task";
@@ -91,21 +82,41 @@ $("#modalTaskSave").click(function (event) {
         };
         currentList.NewTask(newTaskName, newTaskBody);
         newTaskModal.css("display", "none");
-    }else{
+    } else {
         alert("You must create a list before creating a task!");
     };
-});
+};
+//
+
+//List interaction
+// $("#list1").on("click", "li", function (event) {
+//     let target = $(event.target);
+//     console.log(target);
+//     // console.log(target, target.text(), target.attr("class"))
+//     $(".listItem").removeClass("active");
+//     target.addClass("active");
+// });
+
+function SelectList(key, event) {
+    currentList = masterList.AllLists[key];
+    console.log(currentList);
+};
+
+function DeleteListDOM(key) {
+    masterList.DeleteList(key);
+};
 //
 
 //Task interaction
-function DeleteTaskDOM(key){
+function DeleteTaskDOM(key) {
     // console.log(element, key);
     currentList.DeleteTask(key)
 };
+
 function MarkAsDone(key, event) {
     let imageContainer = $(event.target);
     let mainTask = currentList.Tasks[key];
-    
+
     if (mainTask.IsDone == false) {
         mainTask.IsDone = true;
         imageContainer.attr("src", doneOn);
@@ -114,10 +125,11 @@ function MarkAsDone(key, event) {
         imageContainer.attr("src", doneOff);
     };
 };
+
 function MarkAsImportant(key, event) {
     let imageContainer = $(event.target);
     let mainTask = currentList.Tasks[key];
-    
+
     if (mainTask.IsImportant == false) {
         mainTask.IsImportant = true;
         imageContainer.attr("src", starOn);
@@ -126,8 +138,9 @@ function MarkAsImportant(key, event) {
         imageContainer.attr("src", starOff);
     };
 };
-function DeleteTaskAll(){
-    if (currentList != null){
+
+function DeleteTaskAll() {
+    if (currentList != null) {
         currentList.DeleteDone();
     };
 };
@@ -140,12 +153,25 @@ $(document).ready(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
-    if (savedTasks == null){
+    if (savedTasks == null) {
         mainModal.css("display", "block");
-    }else{
+    } else {
         //Load saved data
         parsedList = JSON.parse(savedTasks);
-        currentList = parsedList.AllLists[0];
+        if (parsedList.AllLists[0]) {
+            currentList = parsedList.AllLists[0];
+            for (let i = 0; i < parsedList.AllLists.length; i++) { //Recreate list objects
+                let existList = parsedList.AllLists[i];
+                let newList = masterList.NewList(existList.Name, false, existList.ID);
+                if (existList.Tasks[0]) {
+                    for (let i2 = 0; i2 < existList.Tasks.length; i2++) { //Recreate task objects
+                        let existTask = existList.Tasks[i2];
+                        let newTask1 = newList.NewTask(existTask.Title, existTask.Body, existTask.IsImportant, existTask.IsDone, false, existTask.ID);
+                    };
+                };
+            };
+            masterList.LoadList();
+        };
     };
 });
 //

@@ -177,7 +177,14 @@ a:focus {
   display: block; }
 
 .listItem {
-  border-bottom: 2px solid #d8e8f3; }
+  border-bottom: 2px solid #d8e8f3;
+  position: relative; }
+
+.listImage {
+  position: absolute;
+  top: 10%;
+  height: 34px;
+  right: 17px; }
 
 #sidebar ul li a:hover {
   color: #353535;
