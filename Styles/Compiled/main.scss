@@ -324,7 +324,7 @@ a[data-toggle="collapse"] {
     height: 15%;
     max-height: 15%;
     margin-top: 15px;
-    margin-left: 16%;
+    margin-left: 8%;
     word-wrap: break-word;
     border-radius: 15px 15px 15px 15px;
 }
@@ -421,6 +421,11 @@ a[data-toggle="collapse"] {
         position: relative;
         margin-top: 5px;
     }
+
+    .taskItem {
+        margin-left: 16%;
+    }
+
 }
 
 @media (min-width: 1280px) {
