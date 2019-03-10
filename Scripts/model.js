@@ -19,7 +19,7 @@ class MainList {
             newList = new List(name, newId);
             this.AllLists.push(newList);
             let listString = `<li class="listItem" id="${newList.ID}">` +
-                `<a href="#" onclick="SelectList(`+newList.ID+`, event)">${newList.Name}</a>` +
+                `<a href="#" onclick="SelectList(` + newList.ID + `, event)">${newList.Name}</a>` +
                 `<img src="Assets/Images/garbageColored.png" alt="Garbage can Icon" class="listImage" onclick="DeleteListDOM(` + newList.ID + `)">` +
                 `</li>`;
             listSpot.append(listString);
@@ -45,7 +45,7 @@ class MainList {
     };
     LoadList(id) {
         ClearPage();
-        if (currentList){
+        if (currentList) {
             LoadTasks(currentList.Tasks);
         };
     };
@@ -82,7 +82,7 @@ class List {
                 `<a class="importantImageClick" onclick="MarkAsImportant(` + this.Tasks.length + `, event)">` +
                 `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
                 `</a>` +
-                `<div class="taskHeader">` +
+                `<div class="taskHeader" contenteditable="true" onfocusout="EditHead(` + this.Tasks.length + `, this)">` +
                 newTaskInit.Title +
                 `</div>` +
                 `<a class="doneImageClick" onclick="MarkAsDone(` + this.Tasks.length + `, event)">` +
@@ -91,7 +91,7 @@ class List {
                 `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + this.Tasks.length + `)">` +
                 `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
                 `</a>` +
-                `<div class="taskBody">` +
+                `<div class="taskBody" contenteditable="true" onfocusout="EditBody(` + this.Tasks.length + `, this)">` +
                 newTaskInit.Body +
                 `</div>` +
                 `</div>`;
@@ -123,6 +123,10 @@ class List {
             UpdateTasks();
         }, 600);
     };
+    UpdateTaskProperty(id, property, value) {
+        this.Tasks[id][property] = value;
+        SaveData();
+    };
 };
 
 class Task {
@@ -136,21 +140,23 @@ class Task {
 };
 
 function UpdateLists() {
+    ClearPage();
     ClearLists();
-    if (masterList.AllLists[0] != null) {
+    currentList = null;
+    if (masterList.AllLists[0]) {
         currentList = masterList.AllLists[0];
         for (let i = 0; i < masterList.AllLists.length; i++) {
             let newList = masterList.AllLists[i];
             newList.ID = i;
             let listString = `<li class="listItem" id="${newList.ID}">` +
-                `<a href="#" onclick="SelectList(`+newList.ID+`, event)">${newList.Name}</a>` +
+                `<a href="#" onclick="SelectList(` + newList.ID + `, event)">${newList.Name}</a>` +
                 `<img src="Assets/Images/garbageColored.png" alt="Garbage can Icon" class="listImage" onclick="DeleteListDOM(` + newList.ID + `)">` +
                 `</li>`;
             listSpot.append(listString);
         };
     };
     SaveData();
-    masterList.LoadList(currentList.ID);
+    masterList.LoadList();
 };
 
 function UpdateTasks() {
@@ -181,7 +187,7 @@ function UpdateTasks() {
             `<a class="importantImageClick" onclick="MarkAsImportant(` + i + `, event)">` +
             `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
             `</a>` +
-            `<div class="taskHeader">` +
+            `<div class="taskHeader" contenteditable="true" onfocusout="EditHead(` + i + `, this)">` +
             newTask.Title +
             `</div>` +
             `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
@@ -190,7 +196,7 @@ function UpdateTasks() {
             `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + i + `)">` +
             `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
             `</a>` +
-            `<div class="taskBody">` +
+            `<div class="taskBody" contenteditable="true" onfocusout="EditBody(` + i + `, this)">` +
             newTask.Body +
             `</div>` +
             `</div>`;
@@ -226,7 +232,7 @@ function LoadTasks() {
             `<a class="importantImageClick" onclick="MarkAsImportant(` + i + `, event)">` +
             `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
             `</a>` +
-            `<div class="taskHeader">` +
+            `<div class="taskHeader" contenteditable="true" onfocusout="EditHead(` + i + `, this)">` +
             newTask.Title +
             `</div>` +
             `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
@@ -235,7 +241,7 @@ function LoadTasks() {
             `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + i + `)">` +
             `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
             `</a>` +
-            `<div class="taskBody">` +
+            `<div class="taskBody" contenteditable="true" onfocusout="EditBody(` + i + `, this)">` +
             newTask.Body +
             `</div>` +
             `</div>`;

@@ -129,12 +129,11 @@ function MarkAsDone(key, event) {
 function MarkAsImportant(key, event) {
     let imageContainer = $(event.target);
     let mainTask = currentList.Tasks[key];
-
     if (mainTask.IsImportant == false) {
-        mainTask.IsImportant = true;
+        currentList.UpdateTaskProperty(key, "IsImportant", true);
         imageContainer.attr("src", starOn);
     } else {
-        mainTask.IsImportant = false;
+        currentList.UpdateTaskProperty(key, "IsImportant", false);
         imageContainer.attr("src", starOff);
     };
 };
@@ -143,6 +142,14 @@ function DeleteTaskAll() {
     if (currentList != null) {
         currentList.DeleteDone();
     };
+};
+
+function EditHead(key, element) {
+    currentList.UpdateTaskProperty(key, "Title", element.innerHTML);
+};
+
+function EditBody(key, element) {
+    currentList.UpdateTaskProperty(key, "Body", element.innerHTML);
 };
 //
 
