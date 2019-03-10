@@ -8,6 +8,8 @@ let starOn = "Assets/Images/starFull.png";
 let doneOff = "Assets/Images/checkBoxEmpty.png";
 let doneOn = "Assets/Images/checkBoxFull.png";
 
+let listHeader = $("#listIndicator");
+
 class MainList {
     constructor() {
         this.AllLists = [];
@@ -30,6 +32,7 @@ class MainList {
             UpdateLists();
         };
         SaveData();
+        this.LoadList();
         return newList;
     };
     DeleteList(id) {
@@ -43,10 +46,13 @@ class MainList {
         this.AllLists[id][property] = value;
         SaveData();
     };
-    LoadList(id) {
+    LoadList() {
         ClearPage();
         if (currentList) {
+            listHeader.html(`My Tasks: `+currentList.Name);
             LoadTasks(currentList.Tasks);
+        }else{
+            listHeader.html(`My Tasks: No List Selected`);
         };
     };
 }

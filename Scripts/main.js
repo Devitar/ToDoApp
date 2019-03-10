@@ -99,7 +99,10 @@ function NewTaskDOM() {
 
 function SelectList(key, event) {
     currentList = masterList.AllLists[key];
-    console.log(currentList);
+    masterList.LoadList();
+    let target = $(event.target);
+    $(".listItem").removeClass("active");
+    target.addClass("active");
 };
 
 function DeleteListDOM(key) {
@@ -118,10 +121,10 @@ function MarkAsDone(key, event) {
     let mainTask = currentList.Tasks[key];
 
     if (mainTask.IsDone == false) {
-        mainTask.IsDone = true;
+        currentList.UpdateTaskProperty(key, "IsDone", true);
         imageContainer.attr("src", doneOn);
     } else {
-        mainTask.IsDone = false;
+        currentList.UpdateTaskProperty(key, "IsDone", false);
         imageContainer.attr("src", doneOff);
     };
 };
@@ -174,6 +177,7 @@ $(document).ready(function () {
                     for (let i2 = 0; i2 < existList.Tasks.length; i2++) { //Recreate task objects
                         let existTask = existList.Tasks[i2];
                         let newTask1 = newList.NewTask(existTask.Title, existTask.Body, existTask.IsImportant, existTask.IsDone, false, existTask.ID);
+                        // console.log(existTask.Title, existTask.Body, existTask.IsImportant, existTask.IsDone, false, existTask.ID);
                     };
                 };
             };
