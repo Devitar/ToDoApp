@@ -70,6 +70,7 @@ newTaskButton.click(function (event) {
     newTaskModal.css("display", "block");
     mainFAB.removeClass("active");
 });
+
 function NewTaskDOM() {
     if (currentList != null) {
         let newTaskName = $("#newTaskInput").val();

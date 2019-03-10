@@ -49,9 +49,9 @@ class MainList {
     LoadList() {
         ClearPage();
         if (currentList) {
-            listHeader.html(`My Tasks: `+currentList.Name);
+            listHeader.html(`My Tasks: ` + currentList.Name);
             LoadTasks(currentList.Tasks);
-        }else{
+        } else {
             listHeader.html(`My Tasks: No List Selected`);
         };
     };
