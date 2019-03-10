@@ -1,4 +1,4 @@
-let savedTasks = localStorage.getItem("SavedTasks"); //Gets saved tasks, parsed later into allLists
+let savedTasks = localStorage.getItem("SavedTasksV1.0"); //Gets saved tasks, parsed later into allLists
 let parsedList;
 
 //Modal stuff

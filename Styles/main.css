@@ -246,7 +246,7 @@ a[data-toggle="collapse"] {
   height: 15%;
   max-height: 15%;
   margin-top: 15px;
-  margin-left: 8%;
+  margin-left: 16%;
   word-wrap: break-word;
   border-radius: 15px 15px 15px 15px; }
 
@@ -262,19 +262,20 @@ a[data-toggle="collapse"] {
 .importantImage {
   position: absolute;
   height: 34px;
-  left: -40px; }
+  left: -40px;
+  top: -10px; }
 
 .doneImage {
+  position: absolute;
+  height: 34px;
+  left: -40px;
+  top: 24px; }
+
+.garbageImage {
   position: absolute;
   top: 0;
   height: 34px;
   left: 101%; }
-
-.garbageImage {
-  position: absolute;
-  height: 34px;
-  left: 101%;
-  top: 45px; }
 
 .taskBody {
   height: 66%;
@@ -321,13 +322,16 @@ a[data-toggle="collapse"] {
 @media (min-width: 1280px) {
   .topHeader {
     margin-right: 40%; }
-  .doneImage {
-    height: 44px;
-    left: 101%; }
+  .taskItem {
+    margin-left: 8%; }
   .importantImage {
     height: 44px;
-    left: -50px; }
+    left: -50px;
+    top: 0; }
+  .doneImage {
+    height: 44px;
+    left: -100px;
+    top: 0; }
   .garbageImage {
     height: 44px;
-    left: 101%;
-    top: 55px; } }
+    left: 101%; } }

@@ -229,15 +229,15 @@ function LoadTasks() {
 
         let taskString =
             `<div class="taskItem col-12" id="${newTask.ID}">` +
+            `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
+            `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
+            `</a>` +
             `<a class="importantImageClick" onclick="MarkAsImportant(` + i + `, event)">` +
             `<img src="${importantImg}" alt="Star Icon" class="importantImage">` +
             `</a>` +
             `<div class="taskHeader" contenteditable="true" onfocusout="EditHead(` + i + `, this)">` +
             newTask.Title +
             `</div>` +
-            `<a class="doneImageClick" onclick="MarkAsDone(` + i + `, event)">` +
-            `<img src="${doneImg}"  alt="Check Box Icon" class="doneImage">` +
-            `</a>` +
             `<a class="garbageImageClick" onclick="DeleteTaskDOM(` + i + `)">` +
             `<img src="Assets/Images/garbageColored.png" alt="Garbage Can Icon" class="garbageImage">` +
             `</a>` +
@@ -258,7 +258,7 @@ function ClearLists() {
 };
 
 function SaveData() {
-    localStorage.setItem("SavedTasks", JSON.stringify(masterList));
+    localStorage.setItem("SavedTasksV1.0", JSON.stringify(masterList));
 };
 
 let masterList = new MainList;
