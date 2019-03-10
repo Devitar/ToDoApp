@@ -60,6 +60,7 @@ $("#modalListSave").click(function (event) {
     };
     masterList.NewList(newListName);
     newListModal.css("display", "none");
+    $("#newListInput").val("");
 });
 //
 
@@ -83,6 +84,8 @@ function NewTaskDOM() {
         };
         currentList.NewTask(newTaskName, newTaskBody);
         newTaskModal.css("display", "none");
+        $("#newTaskInput").val("");
+        $("#newTaskInputBody").val("");
     } else {
         alert("You must create a list before creating a task!");
     };
